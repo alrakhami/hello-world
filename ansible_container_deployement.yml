@@ -1,0 +1,29 @@
+---
+- hosts: localhost
+  connection: local
+
+  tasks:
+   - name: Get the latest Docker image tag
+     command: "docker pull alrakhami/regiapp:latest"
+     ignore_errors: yes
+     register: latest_image_pull
+
+   - set_fact:
+       image_tag: "alrakhami/regiapp:latest"
+
+   - name: Start container 1
+     docker_container:
+       name: regi_app1
+       image: "{{ image_tag }}"
+       state: started
+       ports:
+         - "8085:8080"
+
+   - name: Start container 2
+     docker_container:
+       name: regi_app2
+       image: "{{ image_tag }}"
+       state: started
+       ports:
+         - "8086:8080"
+
