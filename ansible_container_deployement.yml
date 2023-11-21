@@ -15,8 +15,10 @@
     - name: Start container 1
       ansible.builtin.shell:
         cmd: "wsl docker run -d --name regi_app1 -p 8085:8080 {{ image_tag }}"
+      ignore_errors: yes
 
     - name: Start container 2
       ansible.builtin.shell:
         cmd: "wsl docker run -d --name regi_app2 -p 8086:8080 {{ image_tag }}"
+      ignore_errors: yes
 
