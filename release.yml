@@ -1,0 +1,3 @@
+dev: latest
+test: ignore
+prod: ignore
